@@ -69,9 +69,14 @@ function recordKey(event){
         selectItem(); //pick an item
         startItem(); //convert it to blanks
 
-        // if (numberOfWins>0){
-        //     document.getElementById("iframeDiv").innerHTML = '';
-        // }
+
+        if (numberOfWins>0){
+            var removeDiv = document.getElementById("player");
+            removeDiv.parentNode.removeChild(removeDiv);
+        }
+        addDiv = document.createElement("DIV");
+        addDiv.id = "player";
+        document.getElementById("append").appendChild(addDiv);
 
         answer.innerText = "The answer is "+blankItem;
 
@@ -170,17 +175,15 @@ function onPlayerReady(event) {
 //    the player should play for six seconds and then stop.
 var done = false;
 function onPlayerStateChange(event) {
-    // if (event.data == YT.PlayerState.PLAYING && !done) {
-    //     setTimeout(stopVideo, 6000);
-    //     done = true;
-    // }
-    if (event.data == YT.PlayerState.ENDED) {
-        console.log($('#player').remove());
+    if (event.data == YT.PlayerState.PLAYING && !done) {
+        // setTimeout(stopVideo, 6000);
         done = true;
     }
+    // if (event.data == YT.PlayerState.ENDED) {
+    //     console.log($('#player').remove());
+    //     done = true;
+    // }
 }
 function stopVideo() {
-player.stopVideo();
+    player.stopVideo();
 }
-
-
