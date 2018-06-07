@@ -6,19 +6,21 @@
     <title>Word Guess</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
-    <!-- <script src="assets/javascript/game.js"></script> -->
+    <script src="assets/javascript/game.js"></script>
 </head>
 <body>
 
     <div>This game is called "Guess the Popstar". The answer will one of several current popstars. </div>
-    <div id="answer"></div>
+    <div id="answer">Press any key to get started!</div>
     <div id="guesses"></div>
     <div id="letters"></div>
-    <div id="winLose"></div>
+    <div id="score"></div>
+    <div id="winLoseMessage"></div>
     <div id="player"></div>
 
 
 <script type="text/javascript">
+if (1==0){
 function loadYoutube(){
     // 2. This code loads the IFrame Player API code asynchronously.
     var tag = document.createElement('script');
@@ -61,7 +63,8 @@ function loadYoutube(){
     player.stopVideo();
     }
 
-document.onkeyup = loadYoutube;
+// document.onkeyup = loadYoutube;
+}
 </script>
 </body>
 </html>
