@@ -71,13 +71,13 @@ function recordKey(event){
         startItem(); //convert it to blanks
 
 
-        // if (numberOfWins>0){
-        //     var a = document.getElementById("player");
-        //     a.parentNode.removeChild(a);
-        // }
-        // addDiv = document.createElement("DIV");
-        // addDiv.id = "player";
-        // document.getElementById("append").appendChild(addDiv);
+        if (numberOfWins>0){
+            var a = document.getElementById("player");
+            a.parentNode.removeChild(a);
+        }
+        addDiv = document.createElement("DIV");
+        addDiv.id = "player";
+        document.getElementById("append").appendChild(addDiv);
 
         answer.innerText = "The answer is "+blankItem;
 
