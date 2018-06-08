@@ -7,6 +7,12 @@ var numberOfWins = 0;
 var youtubeArray = ["3gxPgU2-ih4","BSiN-Ze3idc","5f2mZSk-nvU"];
 var youtube = ""
 
+
+var tag = document.createElement('script');
+
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 //rihanna diamond https://www.youtube.com/watch?v=5f2mZSk-nvU
 //taylor trouble  https://www.youtube.com/watch?v=3gxPgU2-ih4
 //Idina Menzel  let it go     https://www.youtube.com/watch?v=A_DaizJnnJQ
@@ -74,9 +80,9 @@ function recordKey(event){
         //     var a = document.getElementById("player");
         //     a.parentNode.removeChild(a);
         // }
-        addDiv = document.createElement("DIV");
-        addDiv.id = "player";
-        document.getElementById("append").appendChild(addDiv);
+        // addDiv = document.createElement("DIV");
+        // addDiv.id = "player";
+        // document.getElementById("append").appendChild(addDiv);
 
         answer.innerText = "The answer is "+blankItem;
 
@@ -136,11 +142,7 @@ function recordKey(event){
     }
 }
 
-var tag = document.createElement('script');
 
-    tag.src = "https://www.youtube.com/iframe_api";
-    var firstScriptTag = document.getElementsByTagName('script')[0];
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 document.onkeyup = recordKey;
 
