@@ -74,9 +74,9 @@ function recordKey(event){
         //     var a = document.getElementById("player");
         //     a.parentNode.removeChild(a);
         // }
-        // addDiv = document.createElement("DIV");
-        // addDiv.id = "player";
-        // document.getElementById("append").appendChild(addDiv);
+        addDiv = document.createElement("DIV");
+        addDiv.id = "player";
+        document.getElementById("append").appendChild(addDiv);
 
         answer.innerText = "The answer is "+blankItem;
 
