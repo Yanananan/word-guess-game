@@ -8,11 +8,6 @@ var youtubeArray = ["3gxPgU2-ih4","BSiN-Ze3idc","5f2mZSk-nvU"];
 var youtube = ""
 
 
-var tag = document.createElement('script');
-
-    tag.src = "https://www.youtube.com/iframe_api";
-    var firstScriptTag = document.getElementsByTagName('script')[0];
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 //rihanna diamond https://www.youtube.com/watch?v=5f2mZSk-nvU
 //taylor trouble  https://www.youtube.com/watch?v=3gxPgU2-ih4
 //Idina Menzel  let it go     https://www.youtube.com/watch?v=A_DaizJnnJQ
@@ -150,12 +145,13 @@ document.onkeyup = recordKey;
 
 function loadYoutube(){ 
     // 2. This code loads the IFrame Player API code asynchronously.
-    // var tag = document.createElement('script');
+    if (wins==1){
+    var tag = document.createElement('script');
 
-    // tag.src = "https://www.youtube.com/iframe_api";
-    // var firstScriptTag = document.getElementsByTagName('script')[0];
-    // firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-    onYouTubeIframeAPIReady();
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    }
 }
 // 3. This function creates an <iframe> (and YouTube player)
 //    after the API code downloads.
