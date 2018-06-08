@@ -1,0 +1,54 @@
+html, body{
+    background: url(https://yanananan.github.io/Basic-Portfolio/assets/images/background.png);
+    width: 100%;
+    font-family: 'Helvetica Neue', Helvetica, sans-serif;
+    color: white;
+}
+
+#container{
+    width: 1040px;
+    height: 680px;
+    margin: auto;
+    margin-top: 5%;
+    border: 3px white solid;
+    font-size: 25px;
+    background: rgba(0, 0, 0, 0.5)
+}
+
+#title{
+    font-size: 60px;
+    text-align: center;
+    padding: 20px 20px;
+}
+#game{
+    width: 400px;
+    height: 400px;
+    float: left;
+}
+#append{
+    width: 640px;
+    height: 400px;
+    float: right;
+}
+#result{
+    clear: both;
+    width: 90%;
+    margin: auto;
+}
+#game div {
+    width: 350px;
+    height: 30px;
+    padding: 10px 0px 10px 5px;
+    /* border: 1px white solid; */
+}
+
+#result div{
+    height: 30px;
+    text-align: center;
+    padding: 10px 0px 10px 5px;
+    /* border: 1px white solid; */
+}
+
+#answer{
+    letter-spacing: 3px;
+}

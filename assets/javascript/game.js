@@ -1,27 +1,18 @@
-var itemArray = ["Taylor Swift", "Bruno Mars", "Rihanna"];
-var item = ""
-var blankItem = ""
-var validKeys = "abcdefghijkklmnopqrstuvwxyz1234567890";
+var itemArray = ["Taylor Swift", "Bruno Mars", "Rihanna", "Idina Menzel", "LMFAO", "Justin Bieber", "Adele", "Katy Perry", "Miley Cyrus"];
+var item = "";
+var blankItem = "";
+var validKeys = "abcdefghijkklmnopqrstuvwxyz";
 var numberOfGuessesLeft = 0;
 var numberOfWins = 0;
-var youtubeArray = ["3gxPgU2-ih4","BSiN-Ze3idc","5f2mZSk-nvU"];
-var youtube = ""
+var youtubeArray = ["3gxPgU2-ih4","BSiN-Ze3idc","5f2mZSk-nvU","A_DaizJnnJQ","K1GKCBYtf1M","ZH9MDQSH_Z0","wq3zEOcXyGA","Oq_OvVavrN8","rPzqF2pzCKE"];
+var youtube = "";
+var lastGame = "";
 
-
-//rihanna diamond https://www.youtube.com/watch?v=5f2mZSk-nvU
-//taylor trouble  https://www.youtube.com/watch?v=3gxPgU2-ih4
-//Idina Menzel  let it go     https://www.youtube.com/watch?v=A_DaizJnnJQ
 //Adele rolling in the deep   https://www.youtube.com/watch?v=3Nxxo9E2_x8
-//LMFAO sexy and i know it https://www.youtube.com/watch?v=K1GKCBYtf1M
-//bieber baby https://www.youtube.com/watch?v=ZH9MDQSH_Z0
-//Adell Hello  https://www.youtube.com/watch?v=wq3zEOcXyGA
 //one direction what makes you beautiful https://www.youtube.com/watch?v=aqXM0OzsDn0
 //justin timberlake sexyback  https://www.youtube.com/watch?v=zgxPkjhdr-U
 //michael jackson thriller  https://www.youtube.com/watch?v=XCr6kR2UK4k
-//katy perry firework https://www.youtube.com/watch?v=Oq_OvVavrN8
 //alicia keys girl on fire https://www.youtube.com/watch?v=bSJSU9GPzHM
-//miley cyrus party in the usa  https://www.youtube.com/watch?v=rPzqF2pzCKE
-//bruno mars uptown funk https://www.youtube.com/watch?v=BSiN-Ze3idc
 
 function selectItem (){
     //returns a random item out of array of items
@@ -70,78 +61,58 @@ function recordKey(event){
         selectItem(); //pick an item
         startItem(); //convert it to blanks
 
-
-        if (numberOfWins>0){
+        if (lastGame=="win"){  //if the last game was won, then a video has played, so for this new game, the video should be removed by removing the iframe with id="player"
             var a = document.getElementById("player");
             a.parentNode.removeChild(a);
         }
-        addDiv = document.createElement("DIV");
+        addDiv = document.createElement("DIV"); //now add a new div with id="player" into id="append"
         addDiv.id = "player";
         document.getElementById("append").appendChild(addDiv);
 
-        answer.innerText = "The answer is "+blankItem;
-
-        numberOfGuessesLeft=10;
-        guesses.innerText = "The number of guesses is 10";
-        
-        wrongLetters = "...";
-        
-        letters.innerText = "The letters guessed are "+wrongLetters;
-
-        wins.innerText = "Your score is "+numberOfWins;
+        answer.innerText = blankItem; //show new word as blanks
+        numberOfGuessesLeft=10; //reset number of guesses
+        guesses.innerText = numberOfGuessesLeft; //display number of guesses
+        wrongLetters = "...";  //reset list of letters guessed
+        letters.innerText = wrongLetters; //display list of letters guessed
+        wins.innerText = numberOfWins; //display score
 
     } else { //game continues
         var key = event.key;
-        console.log("before check key = "+ key);
         key = checkKey(key);
-        console.log("after check key = "+ key);
         if (item.toLowerCase().indexOf(key)<0){  //checks key against lower case version of the answer
-            if (wrongLetters.indexOf(key)<0){  //checks key against list of wrong letters/numbers guessed
-                console.log("wrongLetters = "+wrongLetters);
-                console.log("wrongLetters.indexOf(key) = "+wrongLetters.indexOf(key));
-                numberOfGuessesLeft--;
-                // var guesses = document.querySelector('#guesses');
-                guesses.innerText = "The number of guesses is "+ (numberOfGuessesLeft);
-                // var letters = document.querySelector('#letters');
-                wrongLetters=wrongLetters+key;
-                letters.innerText = "The letters guessed are "+wrongLetters;
+            if (wrongLetters.indexOf(key)<0){  //checks key against list of wrong letters guessed
+                numberOfGuessesLeft--;  //decrease number of guess
+                guesses.innerText = numberOfGuessesLeft;  //display number of guess
+                wrongLetters=wrongLetters+key;  //add letter to list of wrong letters
+                letters.innerText = wrongLetters;  //display new list
             }
-        } else {
-            for (var i=0; i<item.length; i++){
-                // console.log("i = "+ i);
-                // console.log("item[i] = "+ item[i]);
+        } else {  //if we're here, then we successfully guessed a letter correctly
+            for (var i=0; i<item.length; i++){  //search the whole string and replace the correct underscores with the letter
                 if (key==item.toLowerCase()[i]){
-                    // console.log("blankItem before = "+ blankItem);
                     blankItem = setCharAt(blankItem,i,item[i]);
-                    // console.log("blankItem after = "+ blankItem);
                 }
             }
         }
-        console.log("blankItem = "+ blankItem);
-        // var answer = document.querySelector('#answer');
-        answer.innerText = "The answer is "+blankItem;
+        answer.innerText = blankItem;
 
         if (blankItem.indexOf("_")<0){ //answer was successfully guessed
-            
             numberOfWins++;
-            var wins = document.querySelector('#score');
-            wins.innerText = "Your score is "+numberOfWins;
-            winLose.innerText = "You win! Enjoy the video! Press any key to start a new game!";
+            wins.innerText = numberOfWins;
+            winLose.innerText = "You win! Enjoy the video!";
+            lastGame="win";
             loadYoutube();
         }
     
         if (numberOfGuessesLeft==0){ //number of guesses have run out
-            // var winLose = document.querySelector('#winLoseMessage');
-            winLose.innerText = "You lose! Press any key to start a new game!";
+            winLose.innerText = "You lose!";
+            lastGame="lose";
         }
     }
 }
 
-
-
 document.onkeyup = recordKey;
 
-//everything from this point on is copied from Youtube. The goal is to have the corresponding youtube video load and play when the correct answer is guessed.
+//everything from this point on is copied from Youtube. The goal is to have the corresponding youtube video load and play when the correct answer is guessed. However, at this moment, the video only plays after the first win.  Subsequent wins do not play new videos...
 
 function loadYoutube(){ 
     // 2. This code loads the IFrame Player API code asynchronously.
