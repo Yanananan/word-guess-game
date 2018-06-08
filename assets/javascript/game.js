@@ -145,7 +145,7 @@ document.onkeyup = recordKey;
 
 function loadYoutube(){ 
     // 2. This code loads the IFrame Player API code asynchronously.
-    if (wins==1){
+    if (numberOfWins==1){
     var tag = document.createElement('script');
 
     tag.src = "https://www.youtube.com/iframe_api";
