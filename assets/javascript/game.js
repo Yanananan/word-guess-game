@@ -70,13 +70,13 @@ function recordKey(event){
         startItem(); //convert it to blanks
 
 
-        if (numberOfWins>0){
-            var removeDiv = document.getElementById("player");
-            removeDiv.parentNode.removeChild(removeDiv);
-        }
-        addDiv = document.createElement("DIV");
-        addDiv.id = "player";
-        document.getElementById("append").appendChild(addDiv);
+        // if (numberOfWins>0){
+        //     var a = document.getElementById("player");
+        //     a.parentNode.removeChild(a);
+        // }
+        // addDiv = document.createElement("DIV");
+        // addDiv.id = "player";
+        // document.getElementById("append").appendChild(addDiv);
 
         answer.innerText = "The answer is "+blankItem;
 
@@ -136,7 +136,11 @@ function recordKey(event){
     }
 }
 
+var tag = document.createElement('script');
 
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 document.onkeyup = recordKey;
 
@@ -144,11 +148,12 @@ document.onkeyup = recordKey;
 
 function loadYoutube(){ 
     // 2. This code loads the IFrame Player API code asynchronously.
-    var tag = document.createElement('script');
+    // var tag = document.createElement('script');
 
-    tag.src = "https://www.youtube.com/iframe_api";
-    var firstScriptTag = document.getElementsByTagName('script')[0];
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    // tag.src = "https://www.youtube.com/iframe_api";
+    // var firstScriptTag = document.getElementsByTagName('script')[0];
+    // firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    onYouTubeIframeAPIReady();
 }
 // 3. This function creates an <iframe> (and YouTube player)
 //    after the API code downloads.
