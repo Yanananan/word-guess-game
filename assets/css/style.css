@@ -7,9 +7,9 @@ html, body{
 
 #container{
     width: 1040px;
-    height: 680px;
+    height: 600px;
     margin: auto;
-    margin-top: 5%;
+    margin-top: 1%;
     border: 3px white solid;
     font-size: 25px;
     background: rgba(0, 0, 0, 0.5)

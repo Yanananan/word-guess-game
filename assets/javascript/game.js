@@ -1,24 +1,24 @@
-var itemArray = ["Taylor Swift", "Bruno Mars", "Rihanna", "Idina Menzel", "LMFAO", "Justin Bieber", "Adele", "Katy Perry", "Miley Cyrus"];
+var itemArray = ["Taylor Swift", "Bruno Mars", "Rihanna", "Idina Menzel", "LMFAO", "Justin Bieber", "Adele", "Katy Perry", "Miley Cyrus", "Michael Jackson", "Alicia Keys"];
 var item = "";
 var blankItem = "";
 var validKeys = "abcdefghijkklmnopqrstuvwxyz";
 var numberOfGuessesLeft = 0;
 var numberOfWins = 0;
-var youtubeArray = ["3gxPgU2-ih4","BSiN-Ze3idc","5f2mZSk-nvU","A_DaizJnnJQ","K1GKCBYtf1M","ZH9MDQSH_Z0","wq3zEOcXyGA","Oq_OvVavrN8","rPzqF2pzCKE"];
+var youtubeArray = ["3gxPgU2-ih4","BSiN-Ze3idc","5f2mZSk-nvU","A_DaizJnnJQ","K1GKCBYtf1M","ZH9MDQSH_Z0","wq3zEOcXyGA","Oq_OvVavrN8","rPzqF2pzCKE","XCr6kR2UK4k","bSJSU9GPzHM"];
 var youtube = "";
 var lastGame = "";
+var lastAnswer = ""
 
 //Adele rolling in the deep   https://www.youtube.com/watch?v=3Nxxo9E2_x8
-//one direction what makes you beautiful https://www.youtube.com/watch?v=aqXM0OzsDn0
 //justin timberlake sexyback  https://www.youtube.com/watch?v=zgxPkjhdr-U
-//michael jackson thriller  https://www.youtube.com/watch?v=XCr6kR2UK4k
-//alicia keys girl on fire https://www.youtube.com/watch?v=bSJSU9GPzHM
 
 function selectItem (){
-    //returns a random item out of array of items
-    var i = Math.floor(Math.random() * itemArray.length);
-    item = itemArray[i];
-    youtube = youtubeArray[i];
+    //returns a random item out of array of items, also make sure the chosen item is different than the previous item if applicable
+    while (item==lastAnswer){
+        var i = Math.floor(Math.random() * itemArray.length);
+        item = itemArray[i];
+        youtube = youtubeArray[i];
+    }
 }
 
 function startItem (){
@@ -55,7 +55,6 @@ function recordKey(event){
     var letters = document.querySelector('#letters');
     var wins = document.querySelector('#score');
     var winLose = document.querySelector('#winLoseMessage');
-
 
     if (numberOfGuessesLeft==0||blankItem.indexOf("_")<0){ // if number of guesses have run out or game was won, initialize the game
         selectItem(); //pick an item
@@ -100,12 +99,17 @@ function recordKey(event){
             wins.innerText = numberOfWins;
             winLose.innerText = "You win! Enjoy the video!";
             lastGame="win";
-            loadYoutube();
+            lastAnswer=item;  //recording this answer because i don't want the next game to have the same answer as this one
+            var playerdiv = document.querySelector("#player");
+            playerdiv.innerHTML = '<iframe width="640" height="390" src="https://www.youtube.com/embed/'+ youtube +'?autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
         }
     
         if (numberOfGuessesLeft==0){ //number of guesses have run out
+            answer.innerText = item; //still display answer when game is lost
             winLose.innerText = "You lose!";
             lastGame="lose";
+            lastAnswer=item;
+
         }
     }
 }
@@ -113,51 +117,6 @@ function recordKey(event){
 document.onkeyup = recordKey;
 
 //everything from this point on is copied from Youtube. The goal is to have the corresponding youtube video load and play when the correct answer is guessed. However, at this moment, the video only plays after the first win.  Subsequent wins do not play new videos...
-
-function loadYoutube(){ 
-    // 2. This code loads the IFrame Player API code asynchronously.
-    if (numberOfWins==1){
-    var tag = document.createElement('script');
-
-    tag.src = "https://www.youtube.com/iframe_api";
-    var firstScriptTag = document.getElementsByTagName('script')[0];
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-    }
-}
-// 3. This function creates an <iframe> (and YouTube player)
-//    after the API code downloads.
-var player;
-function onYouTubeIframeAPIReady() {
-    player = new YT.Player('player', {
-        height: '390',
-        width: '640',
-        videoId: youtube,
-        events: {
-        'onReady': onPlayerReady,
-        'onStateChange': onPlayerStateChange
-    }
-});
-}
-
-// 4. The API will call this function when the video player is ready.
-function onPlayerReady(event) {
-    event.target.playVideo();
-}
-
-// 5. The API calls this function when the player's state changes.
-//    The function indicates that when playing a video (state=1),
-//    the player should play for six seconds and then stop.
-var done = false;
-function onPlayerStateChange(event) {
-    if (event.data == YT.PlayerState.PLAYING && !done) {
-        // setTimeout(stopVideo, 6000);
-        done = true;
-    }
-    // if (event.data == YT.PlayerState.ENDED) {
-    //     console.log($('#player').remove());
-    //     done = true;
-    // }
-}
-function stopVideo() {
-    player.stopVideo();
+function loadYoutube2(){
+    player.loadVideoById("3gxPgU2-ih4", 5, "large");
 }
