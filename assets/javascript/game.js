@@ -101,7 +101,7 @@ function recordKey(event){
             lastGame="win";
             lastAnswer=item;  //recording this answer because i don't want the next game to have the same answer as this one
             var playerdiv = document.querySelector("#player");
-            playerdiv.innerHTML = '<iframe width="640" height="390" src="https://www.youtube.com/embed/'+ youtube +'?autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
+            playerdiv.innerHTML = '<iframe width="640" height="390" src="https://www.youtube.com/embed/'+ youtube +'?autoplay=1&showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
         }
     
         if (numberOfGuessesLeft==0){ //number of guesses have run out
@@ -109,7 +109,6 @@ function recordKey(event){
             winLose.innerText = "You lose!";
             lastGame="lose";
             lastAnswer=item;
-
         }
     }
 }
