@@ -115,8 +115,3 @@ function recordKey(event){
 }
 
 document.onkeyup = recordKey;
-
-//everything from this point on is copied from Youtube. The goal is to have the corresponding youtube video load and play when the correct answer is guessed. However, at this moment, the video only plays after the first win.  Subsequent wins do not play new videos...
-function loadYoutube2(){
-    player.loadVideoById("3gxPgU2-ih4", 5, "large");
-}
